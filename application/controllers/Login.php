@@ -57,7 +57,7 @@ class Login extends CI_Controller {
       $password = $this->input->post('password');
       $credential = array('username' => $username, 'password' => sha1($password));
       $teacher = array('nip' => $username, 'password' => sha1($password));
-      $student = array('nisn' => $username, 'password' => sha1($password));
+      $student = array('username' => $username);
       $credential2 = array('email' => $username, 'password' => sha1($password));
       $headmaster = array('nip' => $username, 'password' => sha1($password), 'position' => 'headmaster');
       
@@ -70,18 +70,6 @@ class Login extends CI_Controller {
           $this->session->set_userdata('name', $row->name);
           $this->session->set_userdata('login_type', 'admin');
 
-          $cek_ol = $this->db->get_where('online', array('user_id' => $row->admin_id, 'at' => 'portal', 'session' => 'admin'));
-          if ($cek_ol->num_rows() > 0) {
-            // code...
-          }else {
-            // code...
-            $data['session'] = 'admin';
-            $data['user_id'] = $row->admin_id;
-            $data['at'] = 'portal';
-            $data['status'] = 'Online';
-            activity_log("login", "Login Portal");
-            $this->db->insert('online',$data);
-          }
           redirect(site_url('admin/dashboard'), 'refresh');
       }
 
@@ -93,18 +81,6 @@ class Login extends CI_Controller {
           $this->session->set_userdata('name', $row->name);
           $this->session->set_userdata('login_type', 'superadmin');
 
-          $cek_ol = $this->db->get_where('online', array('user_id' => $row->super_id, 'at' => 'portal', 'session' => 'superadmin'));
-          if ($cek_ol->num_rows() > 0) {
-            // code...
-          }else {
-            // code...
-            $data['session'] = 'superadmin';
-            $data['user_id'] = $row->super_id;
-            $data['at'] = 'portal';
-            $data['status'] = 'Online';
-            activity_log("login", "Login Portal");
-            $this->db->insert('online',$data);
-          }
           redirect(site_url('superadmin/dashboard'), 'refresh');
       }
 
@@ -206,28 +182,21 @@ class Login extends CI_Controller {
       }
 
       // Checking login credential for student
-      $query = $this->db->get_where('student', $student);
+      // $query = $this->db->get_where('student', $student);
+      $query = $this->db->get_where('mdlfx_user', $student);
       if ($query->num_rows() > 0) {
-          $row = $query->row();
-          $this->session->set_userdata('student_login', '1');
-          $this->session->set_userdata('student_id', $row->student_id);
-          $this->session->set_userdata('login_user_id', $row->student_id);
-          $this->session->set_userdata('name', $row->name);
-          $this->session->set_userdata('login_type', 'student');
+          $pw = $query->row();
+          $hash = $pw->password;
+          if (password_verify($password,$hash)) {
+            $row = $this->db->get_where('student', array('student_id' => $pw->student_id))->row();
+            $this->session->set_userdata('student_login', '1');
+            $this->session->set_userdata('student_id', $row->student_id);
+            $this->session->set_userdata('login_user_id', $row->student_id);
+            $this->session->set_userdata('name', $row->name);
+            $this->session->set_userdata('login_type', 'student');
 
-          $cek_ol = $this->db->get_where('online', array('user_id' => $row->student_id, 'at' => 'portal', 'session' => 'student'));
-          if ($cek_ol->num_rows() > 0) {
-            // code...
-          }else {
-            // code...
-            $data['session'] = 'student';
-            $data['user_id'] = $row->student_id;
-            $data['at'] = 'portal';
-            $data['status'] = 'Online';
-            activity_log("login", "Login Portal");
-            $this->db->insert('online',$data);
+            redirect(site_url('student/dashboard'), 'refresh');
           }
-          redirect(site_url('student/dashboard'), 'refresh');
       }
 
       // Checking login credential for parent
