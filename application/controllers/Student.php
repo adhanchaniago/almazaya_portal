@@ -314,7 +314,7 @@ class Student extends CI_Controller
         // } else {
             // echo "Upload Gagal!";
         // }
-        redirect(site_url('student/tugas'), 'refresh');
+        redirect(site_url('student/ibadah'), 'refresh');
     }
     
     function new_activity2(){

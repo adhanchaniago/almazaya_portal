@@ -61,12 +61,30 @@
             </a>
         </li>
 
-        <li class="<?php if ($page_name == 'tugas') echo 'active'; ?> ">
+        <li class="<?php if ($page_name == 'quran') echo 'active'; ?> ">
+            <!-- <a href="<?php echo site_url($account_type.'/quran'); ?>"> -->
+            <a href="#">
+                <i class="entypo-doc"></i>
+                <span><?php echo get_phrase('Al-Quran'); ?></span>
+            </a>
+        </li>
+
+        <li class="<?php if ($page_name == 'quran_tematik') echo 'active'; ?> ">
+            <!-- <a href="<?php echo site_url($account_type.'/quran_tematik'); ?>"> -->
+            <a href="#">
+                <i class="entypo-doc"></i>
+                <span><?php echo get_phrase('Al-Quran Tematik'); ?></span>
+            </a>
+        </li>
+
+
+
+        <!-- <li class="<?php if ($page_name == 'tugas') echo 'active'; ?> ">
             <a href="<?php echo site_url($account_type.'/tugas'); ?>">
                 <i class="entypo-doc"></i>
                 <span><?php echo get_phrase('tugas_harian'); ?></span>
             </a>
-        </li>
+        </li> -->
 
        <!-- <li class="<?php if ($page_name == 'activity_report' || $page_name == 'book_request') echo 'opened active';?> ">
             <a href="#">

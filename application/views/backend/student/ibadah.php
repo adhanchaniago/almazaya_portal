@@ -13,7 +13,7 @@
                     <thead>
                         <tr class="gradeA">
                             <th width="10%">Waktu</th>
-                            <th width="80%">Kegiatan</th>
+                            <th width="80%">Ibadah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -77,7 +77,7 @@
         <div class="panel panel-primary" data-collapsed="0">
             <div class="panel-heading" >
                 <div class="panel-title" style="font-size: 16px; color: white; text-align: center;">
-                    Daftar Kegiatan
+                    Daftar Ibadah
                 </div>
             </div>
             <div class="panel-body">
@@ -85,7 +85,7 @@
                     <thead>
                         <tr class="gradeA">
                             <th width="10%">Waktu</th>
-                            <th width="80%">Kegiatan</th>
+                            <th width="80%">Ibadah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

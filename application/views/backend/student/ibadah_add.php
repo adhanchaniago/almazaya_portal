@@ -9,19 +9,20 @@
             </div>
             <div class="panel-body">
 
-            <?php echo form_open(site_url('student/new_activity') , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top', 'enctype' => 'multipart/form-data'));?>
+            <?php echo form_open(site_url('student/new_activity1') , array('class' => 'form-horizontal form-groups-bordered validate','target'=>'_top', 'enctype' => 'multipart/form-data'));?>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo get_phrase('foto_*');?></label>
                     <div class="col-sm-8">
                         <input type="hidden" name="id" value="<?php echo $id;?>">
                         <input type="file" name="images" accept="image/*" capture="camera" required/>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo get_phrase('keterangan');?></label>
                     <div class="col-sm-8">
+                        <input type="hidden" name="id" value="<?php echo $id;?>">
                         <input type="text" class="form-control" name="note"/>
                         <i>*) Jika ada keterangan yang ingin ditambahkan</i>
                     </div>
