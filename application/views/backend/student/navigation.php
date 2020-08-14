@@ -63,7 +63,7 @@
 
         <li class="<?php if ($page_name == 'quran') echo 'active'; ?> ">
             <!-- <a href="<?php echo site_url($account_type.'/quran'); ?>"> -->
-            <a href="#">
+            <a href="http://quran.almazayaislamicschool.sch.id">
                 <i class="entypo-doc"></i>
                 <span><?php echo get_phrase('Al-Quran'); ?></span>
             </a>
