@@ -1266,4 +1266,33 @@ class Student extends CI_Controller
         $this->crud_model->submit_online_exam($online_exam_id, json_encode($answer_script));
         redirect(site_url('student/online_exam'), 'refresh');
     }
+
+    public function tematik()
+    {
+        // $berita = $this->db->get('posts')->result_array();
+        $this->db->select("*");
+        $this->db->from("tematik");
+        $file = $this->db->get();
+
+        $data['file'] = $file->result_array();
+        $this->load->view('backend/tematik', $data);
+    }
+
+    public function search_result()
+    {
+        $post = $this->input->POST("search", true);
+        // $search = $post("search");
+
+        $this->db->select("*");
+        $this->db->from("tematik");
+        $this->db->where("title LIKE '%$post%'");
+
+        // $this->db->query("SELECT * FROM 'tematik' WHERE title LIKE $post;");
+        $title = $this->db->get();
+
+        $data['title'] = $title->result_array();
+        $this->load->view('backend/search_result', $data);
+        // redirect('welcome/search_result');
+
+    }
 }
